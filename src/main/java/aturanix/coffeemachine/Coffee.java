@@ -36,6 +36,11 @@ public sealed abstract class Coffee {
     // immutable map of ingredients and their dosage
     protected final Map<Ingredient, Integer> ingredients;
 
+    /**
+     * Constructs Coffee from ingredients.
+     *
+     * @param ingredients ingredients and their dosages
+     */
     protected Coffee(Map<Ingredient, Integer> ingredients) {
         this.ingredients = ingredients;
     }
@@ -51,7 +56,7 @@ public sealed abstract class Coffee {
 
     /**
      * Returns string representation of ingredients joined by delimiter.
-     * 
+     *
      * @param delimiter put between ingredients; may be ", "
      * @return ingredients joined by delimiter
      */
@@ -86,7 +91,7 @@ public sealed abstract class Coffee {
             if (dosage > 1) {
                 sb.append('s');
             }
-            
+
             sb.append(" of ").append(entry.getKey());
 
             return sb.toString();
@@ -98,6 +103,9 @@ public sealed abstract class Coffee {
      */
     public static final class Espresso extends Coffee {
 
+        /**
+         * Default constructor.
+         */
         public Espresso() {
             super(Map.of(new Ingredient.Espresso(), 1));
         }
@@ -113,6 +121,9 @@ public sealed abstract class Coffee {
      */
     public static final class DoubleEspresso extends Coffee {
 
+        /**
+         * Default constructor.
+         */
         public DoubleEspresso() {
             super(Map.of(new Ingredient.Espresso(), 2));
         }
@@ -128,6 +139,9 @@ public sealed abstract class Coffee {
      */
     public static final class Americano extends Coffee {
 
+        /**
+         * Default constructor.
+         */
         public Americano() {
             super(Map.of(new Ingredient.Espresso(), 1,
                     new Ingredient.HotWater(), 4));
@@ -144,6 +158,9 @@ public sealed abstract class Coffee {
      */
     public static final class Capuccino extends Coffee {
 
+        /**
+         * Default constructor.
+         */
         public Capuccino() {
             super(Map.of(new Ingredient.Espresso(), 1,
                     new Ingredient.SteamedMilk(), 2,
@@ -161,6 +178,9 @@ public sealed abstract class Coffee {
      */
     public static final class CaffeLatte extends Coffee {
 
+        /**
+         * Default constructor.
+         */
         public CaffeLatte() {
             super(Map.of(new Ingredient.Espresso(), 1,
                     new Ingredient.SteamedMilk(), 3,
@@ -178,6 +198,9 @@ public sealed abstract class Coffee {
      */
     public static final class Mocha extends Coffee {
 
+        /**
+         * Default constructor.
+         */
         public Mocha() {
             super(Map.of(new Ingredient.Espresso(), 1,
                     new Ingredient.SteamedMilk(), 1,
@@ -196,6 +219,9 @@ public sealed abstract class Coffee {
      */
     public static final class HotWater extends Coffee {
 
+        /**
+         * Default constructor.
+         */
         public HotWater() {
             super(Map.of(new Ingredient.HotWater(), 5));
         }
