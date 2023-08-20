@@ -40,8 +40,8 @@ public class CoffeeTest {
      * Test of toStringIngredients method, of class Coffee.
      */
     @Test
-    public void testToStringIngredients() {
-        System.out.println("toStringIngredients");
+    public void testToStringIngredients_Mocha() {
+        System.out.println("toStringIngredients_Mocha");
         Coffee instance = new Coffee.Mocha();
 
         String delimiter = ", ";
@@ -53,7 +53,25 @@ public class CoffeeTest {
             "one dosage of Milk Foam", "one dosage of Espresso", "one dosage of Steamed Milk",
             "two dosages of Hot Chocolate"};
         Arrays.sort(expResult);
-        
+        assertArrayEquals(expResult, result);
+    }
+
+    /**
+     * Test of toStringIngredients method, of class Coffee.
+     */
+    @Test
+    public void testToStringIngredients_DoubleEspresso() {
+        System.out.println("toStringIngredients_DoubleEspresso");
+        Coffee instance = new Coffee.DoubleEspresso();
+
+        String delimiter = ", ";
+        String[] result = instance.toStringIngredients(delimiter
+        ).split(", ");
+        Arrays.sort(result);
+
+        String[] expResult = {
+            "two dosages of Espresso"};
+        Arrays.sort(expResult);
         assertArrayEquals(expResult, result);
     }
 }

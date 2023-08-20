@@ -86,9 +86,9 @@ public class CoffeeMachine {
             while (coffee == null) {
                 out.print("Please enter the number of the coffee you want to drink\n> ");
                 out.flush();
-                
+
                 var line = scanner.nextLine();
-                
+
                 int number;
                 try {
                     number = Integer.parseInt(line);
@@ -108,12 +108,13 @@ public class CoffeeMachine {
             }
         }
 
-        out.println("Thank you. Your coffee is being prepared.");
-        out.println("You have chosen "
+        out.println("Thank you. Your coffee is being prepared.\n"
+                + "You have chosen "
                 + coffee.toString()
-                + " this coffee consists of "
+                + ". this coffee consists of "
                 + coffee.toStringIngredients(", ")
                 + ".");
+        out.flush();
     }
 
     public static void main(String[] args) {

@@ -66,7 +66,7 @@ public class CoffeeMachineTest {
                 + "Please enter the number of the coffee you want to drink\n> "
                 + "Please enter the number of the coffee you want to drink\n> "
                 + "Thank you. Your coffee is being prepared.\n"
-                + "You have chosen Caffe Latte this coffee consists of ";
+                + "You have chosen Caffe Latte. this coffee consists of ";
         // the rest of it is checked in CoffeeTest
 
         String outResult = out.toString();
