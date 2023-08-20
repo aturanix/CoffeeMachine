@@ -23,12 +23,101 @@
  */
 package aturanix.coffeemachine;
 
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 /**
+ * Main class of CoffeeMachine.
  *
  * @author Alihan Turan
  */
 public class CoffeeMachine {
+
+    private final String menu = """
+            1. Espresso 20TL
+            2. Double Espresso 29TL
+            3. Cappuccino 27TL
+            4. Caffe Latte 27TL
+            5. Mocha 32TL
+            6. Americano 25TL
+            7. Hot Water 5TL""";
+
+    /**
+     * Returns Coffee instance for selected coffee.
+     *
+     * @param number coffee number on menu
+     * @return Coffee
+     */
+    private Coffee selectCoffee(int number) {
+        return switch (number) {
+            case 1 ->
+                new Coffee.Espresso();
+            case 2 ->
+                new Coffee.DoubleEspresso();
+            case 3 ->
+                new Coffee.Capuccino();
+            case 4 ->
+                new Coffee.CaffeLatte();
+            case 5 ->
+                new Coffee.Mocha();
+            case 6 ->
+                new Coffee.Americano();
+            case 7 ->
+                new Coffee.HotWater();
+            default ->
+                null;
+        };
+    }
+
+    /**
+     * Runner method of the class. This is typically called in main.
+     *
+     * @param in may be System.in
+     * @param out may be System.out
+     * @param err may be System.err
+     */
+    public void run(InputStream in, PrintStream out, PrintStream err) {
+        out.println(menu);
+        out.flush();
+
+        Coffee coffee = null;
+        try (var scanner = new Scanner(in)) {
+            while (coffee == null) {
+                out.print("Please enter the number of the coffee you want to drink\n> ");
+                out.flush();
+                
+                var line = scanner.nextLine();
+                
+                int number;
+                try {
+                    number = Integer.parseInt(line);
+                } catch (NumberFormatException e) {
+                    err.println("ERROR: Input isn't number");
+                    err.flush();
+                    continue;
+                }
+
+                coffee = selectCoffee(number);
+                if (coffee != null) {
+                    break;
+                }
+
+                err.println("ERROR: Entered number doesn't exist");
+                err.flush();
+            }
+        }
+
+        out.println("Thank you. Your coffee is being prepared.");
+        out.println("You have chosen "
+                + coffee.toString()
+                + " this coffee consists of "
+                + coffee.toStringIngredients(", ")
+                + ".");
+    }
+
     public static void main(String[] args) {
-        System.out.println("hello");
+        var coffeeMachine = new CoffeeMachine();
+        coffeeMachine.run(System.in, System.out, System.err);
     }
 }
